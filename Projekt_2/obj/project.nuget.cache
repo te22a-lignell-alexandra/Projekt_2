@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "UVapwAJaMi/k4X9g8XHEQwuSLKf+lwP0oPJZbi2XQwon7puyQ9or054WDxNx9Sbah6XgrncZnCpy5RodlpYOVQ==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexandra.lignell\\.nuget\\packages\\raylib-cs\\6.0.0\\raylib-cs.6.0.0.nupkg.sha512",
+    "C:\\Users\\alexandra.lignell\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
