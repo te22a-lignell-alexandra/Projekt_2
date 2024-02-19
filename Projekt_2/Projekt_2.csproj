@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="*.png" CopyToOutputDirectory="Always"/>
+    <Content Include="img/*.png" CopyToOutputDirectory="Always"/>
   </ItemGroup>
 
   <ItemGroup>

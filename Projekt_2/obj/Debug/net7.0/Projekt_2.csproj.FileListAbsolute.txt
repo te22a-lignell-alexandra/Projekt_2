@@ -20,3 +20,4 @@ c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\obj\Debug
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\obj\Debug\net7.0\Projekt_2.pdb
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\obj\Debug\net7.0\Projekt_2.genruntimeconfig.cache
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\obj\Debug\net7.0\ref\Projekt_2.dll
+c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug\net7.0\img\wizard.png
