@@ -47,38 +47,56 @@ orginalvariabel = Metod(); i main. Gå inte direkt till parametrar eller ref! f�
 Lägga i klasser, skriv public före --> public static void Metod()
 Glöm ej Klassnamn.Metod() vid anropning*/
 
-Character playerCharacter = new() {image = Raylib.LoadTexture("img/wizard.png"), rect = new(500, 400, 64, 64)};
+string scene = "start";
+
+Texture2D[] playerCharacterTextures = {Raylib.LoadTexture("img/PCwitch256px.png"), Raylib.LoadTexture("img/PCwizard256px.png"), Raylib.LoadTexture("img/PCpotionsWitch256px.png")};
+Rectangle[] playerCharacterRecs = {new(50, 300, 200, 200)};
+
+Character playerCharacter = new() {rect = new(500, 400, 64, 64)};
 
 
 
 while (!Raylib.WindowShouldClose())
 {
-/* --------------------------------------------------------------------------------------------------
-== MAIN ==
-----------------------------------------------------------------------------------------------------*/
-// Player movement
-playerCharacter.movement = Character.Movement(out playerCharacter.movement, 5);
-playerCharacter.rect.X += playerCharacter.movement.X;
-if (playerCharacter.rect.X > 1100 - playerCharacter.rect.Width || playerCharacter.rect.X < 0)
-{
-    playerCharacter.rect.X -= playerCharacter.movement.X;
-}
-playerCharacter.rect.Y += playerCharacter.movement.Y;
-if (playerCharacter.rect.Y > 900 - playerCharacter.rect.Height || playerCharacter.rect.Y < 0)
-{
-    playerCharacter.rect.Y -= playerCharacter.movement.Y;
-}
+    /* --------------------------------------------------------------------------------------------------
+    == MAIN ==
+    ----------------------------------------------------------------------------------------------------*/
+    if (scene == "start")
+    {
+        if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), )
+        {
+
+        }
+    }
+   
+    if (scene != "ending" || scene != "start")
+    {
+        // Player can move around freely on the screen, not outside of the screen
+        Character.PlayerCharacterMovement(playerCharacter);
+    }
+
+    /*----------------------------------------------------------------------------------------------------
+    == DRAWING ==
+    -----------------------------------------------------------------------------------------------------*/
+    Raylib.BeginDrawing();
+
+    if (scene == "start")
+    {
+        Raylib.ClearBackground(Color.DarkGreen);
+        Raylib.DrawText("Click On The Character You Want To Play As", 160, 100, 30, Color.Gold);
+        
+        
+
+        
+    }
+
+    else if (scene != "start" || scene != "end")
+    {
+        Raylib.ClearBackground(Color.DarkGreen);
+        Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
+    }
 
 
-
-/*----------------------------------------------------------------------------------------------------
-== DRAWING ==
------------------------------------------------------------------------------------------------------*/
-Raylib.BeginDrawing();
-
-Raylib.ClearBackground(Color.DarkGreen);
-Raylib.DrawTexture(playerCharacter.image, (int) playerCharacter.rect.X, (int) playerCharacter.rect.Y, Color.White);
-
-Raylib.EndDrawing();
+    Raylib.EndDrawing();
 
 }
