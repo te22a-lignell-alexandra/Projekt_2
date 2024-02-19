@@ -30,11 +30,14 @@ Raylib.SetTargetFPS(60);
 
 
 /* Vad ska finnas i spelet?
-Labyrint, man ska kunna gå mellan rum genom dörrar, när man gått genom en dörr ska det vara som om skärmen
+- Labyrint, man ska kunna gå mellan rum genom dörrar, när man gått genom en dörr ska det vara som om skärmen
 flyttats så att man nu ser det nya rummet, dvs att man hamnar på motsatt sida, som om man kom in från dörren
-Inventory? Lista som man ska kunna bläddra i på något sätt, plocka upp och använd -> olika knappar, engångsgrejer
-Om man kan lägga in att det blir mörkt nån sekund medans man byter scen (hur gör man för att nåt ska hända i x sekunder?)
-Låsa upp nya rum genom att göra saker, instruktioner till lösning visas vid låsta dörrar */
+- Inventory? Lista som man ska kunna bläddra i på något sätt, plocka upp och använd -> olika knappar, engångsgrejer
+- Om man kan lägga in att det blir mörkt nån sekund medans man byter scen (hur gör man för att nåt ska hända i x sekunder?)
+- Låsa upp nya rum genom att göra saker, instruktioner till lösning visas vid låsta dörrar 
+- För att välja mellan tre karaktärer i början att spela som. Två metoder; get mouse position (get Vector2 för var
+muspekaren är), och check collisions point rec (eller nåt sånt, kollar om Vector2 är innuti en rektangel), 
+sen if satser för de tre karaktärerna, playerCharacter.img = blablabla.png */
 
 /*För metoder 
 Skapa static void Name() {} metod. Lägg in koden. Kolla efter fel och rätta de som finns.
@@ -56,7 +59,16 @@ while (!Raylib.WindowShouldClose())
 // Player movement
 playerCharacter.movement = Character.Movement(out playerCharacter.movement, 5);
 playerCharacter.rect.X += playerCharacter.movement.X;
+if (playerCharacter.rect.X > 1100 - playerCharacter.rect.Width || playerCharacter.rect.X < 0)
+{
+    playerCharacter.rect.X -= playerCharacter.movement.X;
+}
 playerCharacter.rect.Y += playerCharacter.movement.Y;
+if (playerCharacter.rect.Y > 900 - playerCharacter.rect.Height || playerCharacter.rect.Y < 0)
+{
+    playerCharacter.rect.Y -= playerCharacter.movement.Y;
+}
+
 
 
 /*----------------------------------------------------------------------------------------------------
