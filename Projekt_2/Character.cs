@@ -55,4 +55,25 @@ public static void PlayerCharacterMovement(Character character)
         character.rect.Y -= character.movement.Y;
     }
 }
+
+public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, Character[] choice)
+{
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[0].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+        {
+            character.image = Raylib.LoadTexture("img/PCwitch.png");
+            character.rect = new(500, 400, 64, 64);
+        }
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[1].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+        {
+            character.image = Raylib.LoadTexture("img/PCwizard.png");
+            character.rect = new(500, 400, 64, 64);
+        }
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[2].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+        {
+            character.image = Raylib.LoadTexture("img/PCpotionsWitch.png");
+            character.rect = new(500, 400, 64, 64);
+        }
+    
+    return (character.image, character.rect);
+}
 }

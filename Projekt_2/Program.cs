@@ -37,7 +37,9 @@ flyttats så att man nu ser det nya rummet, dvs att man hamnar på motsatt sida,
 - Låsa upp nya rum genom att göra saker, instruktioner till lösning visas vid låsta dörrar 
 - För att välja mellan tre karaktärer i början att spela som. Två metoder; get mouse position (get Vector2 för var
 muspekaren är), och check collisions point rec (eller nåt sånt, kollar om Vector2 är innuti en rektangel), 
-sen if satser för de tre karaktärerna, playerCharacter.img = blablabla.png */
+sen if satser för de tre karaktärerna, playerCharacter.img = blablabla.png 
+- random movement fiende - random generator x och y, while (scene == rum && fiende is alive) while x != random x
+x++, while y != random y, y++. om x = random x och/eller y = random y, ny random x och y*/
 
 /*För metoder 
 Skapa static void Name() {} metod. Lägg in koden. Kolla efter fel och rätta de som finns.
@@ -49,11 +51,13 @@ Glöm ej Klassnamn.Metod() vid anropning*/
 
 string scene = "start";
 
-Texture2D[] playerCharacterTextures = {Raylib.LoadTexture("img/PCwitch256px.png"), Raylib.LoadTexture("img/PCwizard256px.png"), Raylib.LoadTexture("img/PCpotionsWitch256px.png")};
-Rectangle[] playerCharacterRecs = {new(50, 300, 200, 200)};
+Character[] CharacterChoice = {
+    new() {rect = new(70, 300, 256, 256), image = Raylib.LoadTexture("img/PCwitch256px.png")},
+    new() {rect = new(420, 300, 256, 256), image = Raylib.LoadTexture("img/PCwizard256px.png")},
+    new() {rect = new(750, 300, 256, 256), image = Raylib.LoadTexture("img/PCpotionsWitch256px.png")}
+};
 
-Character playerCharacter = new() {rect = new(500, 400, 64, 64)};
-
+Character playerCharacter = new();
 
 
 while (!Raylib.WindowShouldClose())
@@ -62,17 +66,22 @@ while (!Raylib.WindowShouldClose())
     == MAIN ==
     ----------------------------------------------------------------------------------------------------*/
     if (scene == "start")
-    {
-        if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), )
-        {
+    { 
+        (playerCharacter.image, playerCharacter.rect) = Character.ChoosePlayerCharacter(playerCharacter, CharacterChoice);    
 
-        }
     }
    
     if (scene != "ending" || scene != "start")
     {
         // Player can move around freely on the screen, not outside of the screen
         Character.PlayerCharacterMovement(playerCharacter);
+
+
+        if (scene == "entrance")
+        {
+            
+        }
+
     }
 
     /*----------------------------------------------------------------------------------------------------
@@ -83,17 +92,30 @@ while (!Raylib.WindowShouldClose())
     if (scene == "start")
     {
         Raylib.ClearBackground(Color.DarkGreen);
-        Raylib.DrawText("Click On The Character You Want To Play As", 160, 100, 30, Color.Gold);
-        
-        
+        Raylib.DrawText("Who Are You Playing As?", 200, 200, 30, Color.Gold);
 
-        
+        foreach (Character character in CharacterChoice)
+        {
+            Raylib.DrawTexture(character.image, (int) character.rect.X, (int) character.rect.Y, Color.White);
+        }
+
+        if (playerCharacter.image.Width != 0)
+        {
+            scene = "entrance";
+        }
+
     }
 
     else if (scene != "start" || scene != "end")
     {
         Raylib.ClearBackground(Color.DarkGreen);
         Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
+
+        if (scene == "entrance")
+        {
+            Raylib.ClearBackground(Color.DarkGray);
+        }
+
     }
 
 
