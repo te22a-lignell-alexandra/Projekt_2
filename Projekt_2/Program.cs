@@ -58,6 +58,9 @@ Character[] CharacterOptions = {
 };
 
 Character playerCharacter = new();
+Texture2D shadow = Raylib.LoadTexture("img/skugga.png");
+
+List<Rectangle> walls = new List<Rectangle>();
 
 
 while (!Raylib.WindowShouldClose())
@@ -79,9 +82,11 @@ while (!Raylib.WindowShouldClose())
         Character.PlayerCharacterMovement(playerCharacter);
 
         // MAIN -entrance- --------------------------------------------------------------------------------
-        if (scene == "entrance")
+        if (scene == "outside")
         {
-            
+            // Create the walls
+            walls.Add(new(0, 0, 1150, 200));
+            walls.Add(new(750, 0, 50, 300));
         }
 
     }
@@ -104,15 +109,25 @@ DRAWING -game-
 ----------------------------------------------------------------------------------------------------*/
     else if (scene != "start" || scene != "end")
     {
-        Raylib.ClearBackground(Color.DarkGreen);
-        Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
 
-        // Drawing -entrance- ------------------------------------------------------------------------
-        if (scene == "entrance")
+        Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
+        // Shadow only inside
+        if (scene != "outside")
         {
-            Raylib.ClearBackground(Color.DarkGray);
+            Raylib.DrawTexture(shadow, (int)playerCharacter.rect.X - 1100, (int)playerCharacter.rect.Y - 900, Color.White);
         }
-        
+        // ------------------------------------------------------------------------
+        // Drawing -entrance- 
+        if (scene == "outside")
+        {
+            Raylib.ClearBackground(Color.DarkGreen);
+
+            foreach(Rectangle wall in walls)
+            {
+                Raylib.DrawRectangleRec(wall, Color.Black);
+            }
+        }
+
         Raylib.DrawText($"HP: {playerCharacter.hp}", 10, 10, 40, Color.Red);
     }
 

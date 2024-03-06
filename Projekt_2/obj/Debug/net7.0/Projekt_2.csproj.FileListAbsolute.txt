@@ -29,3 +29,4 @@ c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug\net7.0\img\PCpotionsWitch256px.png
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug\net7.0\img\PCwitch256px.png
 c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug\net7.0\img\PCwizard256px.png
+c:\Users\alexandra.lignell\Documents\Programmering\Projekt_2\Projekt_2\bin\Debug\net7.0\img\skugga.png

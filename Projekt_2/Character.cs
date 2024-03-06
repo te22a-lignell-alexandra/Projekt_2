@@ -91,7 +91,7 @@ public static string DrawCharacterStart(string scene, Character[] CharacterChoic
 
     if (playerCharacter.image.Width != 0)
     {
-        scene = "entrance";
+        scene = "outside";
     }
 
     return scene;
