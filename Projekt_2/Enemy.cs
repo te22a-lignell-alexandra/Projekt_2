@@ -1,10 +1,11 @@
-// class Enemy
-// {
-//     public string name;
-//     public int hp = 100;
-//     public void Hurt(int amount)
-//     {
-//         hp -= amount;
-//         if (hp < 0) hp = 0;
-//     }
-// }
+using System.Numerics;
+using Raylib_cs;
+
+class Enemy
+{
+    public string name;
+    public Texture2D image;
+    public Rectangle rect;
+    public Vector2 movement;
+    public int hp;
+}

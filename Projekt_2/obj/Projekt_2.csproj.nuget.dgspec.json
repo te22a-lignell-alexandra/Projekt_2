@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj": {}
+    "C:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj": {}
   },
   "projects": {
-    "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj": {
+    "C:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj",
+        "projectUniqueName": "C:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj",
         "projectName": "Projekt_2",
-        "projectPath": "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj",
+        "projectPath": "C:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\Projekt_2.csproj",
         "packagesPath": "C:\\Users\\alexandra.lignell\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\obj\\",
+        "outputPath": "C:\\Users\\alexandra.lignell\\Documents\\Programmering\\Projekt_2\\Projekt_2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

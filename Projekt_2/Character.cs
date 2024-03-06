@@ -6,12 +6,14 @@ class Character
     public Texture2D image;
     public Rectangle rect;
     public Vector2 movement = new Vector2(0,0);
+    public int hp;
 
 /* -----------------------------------------------------------------------------------------------------
 == METODER ==
 -------------------------------------------------------------------------------------------------------*/
 
-// Från projekt 1, först kopierat från genomgång vv
+// (Från projekt 1, först kopierat från genomgång vv)
+// playerCharacter vector movement code
     public static Vector2 Movement(out Vector2 movement, float speed)
 {
     movement = Vector2.Zero;
@@ -39,6 +41,7 @@ class Character
 
     return movement;
 }
+// PlayerCharacter can move around (not outside of the screen)
 public static void PlayerCharacterMovement(Character character)
 {
     character.movement = Movement(out character.movement, 5);
@@ -56,24 +59,41 @@ public static void PlayerCharacterMovement(Character character)
     }
 }
 
-public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, Character[] choice)
+// Choose your character in the beginning
+public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, Character[] option)
 {
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[0].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[0].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             character.image = Raylib.LoadTexture("img/PCwitch.png");
             character.rect = new(500, 400, 64, 64);
         }
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[1].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[1].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             character.image = Raylib.LoadTexture("img/PCwizard.png");
             character.rect = new(500, 400, 64, 64);
         }
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), choice[2].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[2].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             character.image = Raylib.LoadTexture("img/PCpotionsWitch.png");
             character.rect = new(500, 400, 64, 64);
         }
     
     return (character.image, character.rect);
+    // Kan man göra om det med bara en if sats??
+}
+
+public static string DrawCharacterStart(string scene, Character[] CharacterChoice, Character playerCharacter)
+{
+    foreach (Character character in CharacterChoice)
+    {
+        Raylib.DrawTexture(character.image, (int)character.rect.X, (int)character.rect.Y, Color.White);
+    }
+
+    if (playerCharacter.image.Width != 0)
+    {
+        scene = "entrance";
+    }
+
+    return scene;
 }
 }
