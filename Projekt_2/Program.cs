@@ -78,16 +78,19 @@ while (!Raylib.WindowShouldClose())
    -----------------------------------------------------------------------------------------------------*/
     if (scene != "ending" || scene != "start")
     {
-        // Player can move around freely on the screen, not outside of the screen
-        Character.PlayerCharacterMovement(playerCharacter);
-
         // MAIN -entrance- --------------------------------------------------------------------------------
-        if (scene == "outside")
+        if (scene == "entrance")
         {
             // Create the walls
-            walls.Add(new(0, 0, 1150, 200));
-            walls.Add(new(750, 0, 50, 300));
+            walls.Add(new(200, 200, 700, 50));
+            walls.Add(new(200, 200, 50, 500));
+            walls.Add(new(900, 200, 50, 500));
+            walls.Add(new(200, 700, 300, 50));
+            walls.Add(new(650, 700, 300, 50));
         }
+
+        // Player can move around freely on the screen, not outside of the screen or through walls
+        playerCharacter.CharacterMovement(walls);
 
     }
 
@@ -111,23 +114,25 @@ DRAWING -game-
     {
 
         Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
-        // Shadow only inside
-        if (scene != "outside")
-        {
-            Raylib.DrawTexture(shadow, (int)playerCharacter.rect.X - 1100, (int)playerCharacter.rect.Y - 900, Color.White);
-        }
+
         // ------------------------------------------------------------------------
         // Drawing -entrance- 
-        if (scene == "outside")
+        if (scene == "entrance")
         {
-            Raylib.ClearBackground(Color.DarkGreen);
+            Raylib.ClearBackground(Color.Brown);
 
             foreach(Rectangle wall in walls)
             {
-                Raylib.DrawRectangleRec(wall, Color.Black);
+                Raylib.DrawRectangleRec(wall, Color.DarkBrown);
             }
+        
         }
+        
+        /*Inventory system idea:
+        lista, nån loop m i i listan, om klicka på nån tangent i + eller - 1. Byt mellan olika föremål?*/
 
+        // Things that should be drawn top of the rest 
+        Raylib.DrawTexture(shadow, (int)playerCharacter.rect.X - 1100, (int)playerCharacter.rect.Y - 900, Color.White);
         Raylib.DrawText($"HP: {playerCharacter.hp}", 10, 10, 40, Color.Red);
     }
 

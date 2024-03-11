@@ -41,27 +41,39 @@ class Character
 
     return movement;
 }
-// PlayerCharacter can move around (not outside of the screen)
-public static void PlayerCharacterMovement(Character character)
-{
-    character.movement = Movement(out character.movement, 5);
 
-    character.rect.X += character.movement.X;
-    if (character.rect.X > 1100 - character.rect.Width || character.rect.X < 0)
-    {
-        character.rect.X -= character.movement.X;
-    }
-    
-    character.rect.Y += character.movement.Y;
-    if (character.rect.Y > 900 - character.rect.Height || character.rect.Y < 0)
-    {
-        character.rect.Y -= character.movement.Y;
-    }
+// Character collides with a wall = true/false
+public bool CollidesWithWall(Rectangle character, List<Rectangle> walls)
+        {
+            foreach (Rectangle wall in walls)
+            {
+                if (Raylib.CheckCollisionRecs(character, wall))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+// PlayerCharacter can move around (not outside of the screen or through walls)
+public void CharacterMovement(List<Rectangle> walls)
+{
+    movement = Movement(out movement, 5);
+
+    rect.X += movement.X;
+    if (CollidesWithWall(rect, walls) || rect.X > 1100 - rect.Width || rect.X < 0) rect.X -= movement.X;
+    rect.Y += movement.Y;
+    if (CollidesWithWall(rect, walls) || rect.Y > 900 - rect.Height || rect.Y < 0) rect.Y -= movement.Y;
+
 }
 
 // Choose your character in the beginning
 public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, Character[] option)
 {
+    
+    // Göra om med en foreach loop?? ha en lista eller nåt då för bilderna antar jag?
+
     if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[0].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             character.image = Raylib.LoadTexture("img/PCwitch.png");
@@ -91,7 +103,7 @@ public static string DrawCharacterStart(string scene, Character[] CharacterChoic
 
     if (playerCharacter.image.Width != 0)
     {
-        scene = "outside";
+        scene = "entrance";
     }
 
     return scene;
