@@ -60,8 +60,9 @@ Character[] CharacterOptions = {
 Character playerCharacter = new();
 Texture2D shadow = Raylib.LoadTexture("img/skugga.png");
 
+// Listor
 List<Rectangle> walls = new List<Rectangle>();
-
+List<DoorItem> doorItems = new List<DoorItem>();
 
 while (!Raylib.WindowShouldClose())
 {
@@ -81,12 +82,17 @@ while (!Raylib.WindowShouldClose())
         // MAIN -entrance- --------------------------------------------------------------------------------
         if (scene == "entrance")
         {
+            walls.Clear();
+            doorItems.Clear();
             // Create the walls
             walls.Add(new(200, 200, 700, 50));
             walls.Add(new(200, 200, 50, 500));
             walls.Add(new(900, 200, 50, 500));
             walls.Add(new(200, 700, 300, 50));
             walls.Add(new(650, 700, 300, 50));
+            // Trapdoor
+            doorItems.Add(new() {rect = new(556, 386, 128, 128), image = Raylib.LoadTexture("img/trapdoor.png")});
+            doorItems.Add(new() {rect = new()});
         }
 
         // Player can move around freely on the screen, not outside of the screen or through walls
@@ -112,26 +118,30 @@ DRAWING -game-
 ----------------------------------------------------------------------------------------------------*/
     else if (scene != "start" || scene != "end")
     {
-
-        Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
-
         // ------------------------------------------------------------------------
         // Drawing -entrance- 
         if (scene == "entrance")
         {
             Raylib.ClearBackground(Color.Brown);
-
+            // Draw All Walls
             foreach(Rectangle wall in walls)
             {
                 Raylib.DrawRectangleRec(wall, Color.DarkBrown);
             }
-        
+            // Draw All Doors and Objects related to them
+            foreach(DoorItem doorItem in doorItems)
+            {
+                Raylib.DrawTexture(doorItem.image, (int)doorItem.rect.X, (int)doorItem.rect.Y, Color.White);
+            }
+
+            DoorItem.IsDoorLocked();
         }
         
         /*Inventory system idea:
         lista, nån loop m i i listan, om klicka på nån tangent i + eller - 1. Byt mellan olika föremål?*/
 
         // Things that should be drawn top of the rest 
+        Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
         Raylib.DrawTexture(shadow, (int)playerCharacter.rect.X - 1100, (int)playerCharacter.rect.Y - 900, Color.White);
         Raylib.DrawText($"HP: {playerCharacter.hp}", 10, 10, 40, Color.Red);
     }
