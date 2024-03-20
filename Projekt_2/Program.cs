@@ -51,6 +51,7 @@ Glöm ej Klassnamn.Metod() vid anropning*/
 
 string scene = "start";
 
+// Array eftersom antalet karaktärer aldrig ändras, bara viktigt 1 gång i början
 Character[] CharacterOptions = {
     new() {rect = new(70, 300, 256, 256), image = Raylib.LoadTexture("img/PCwitch256px.png")},
     new() {rect = new(420, 300, 256, 256), image = Raylib.LoadTexture("img/PCwizard256px.png")},
@@ -60,9 +61,16 @@ Character[] CharacterOptions = {
 Character playerCharacter = new();
 Texture2D shadow = Raylib.LoadTexture("img/skugga.png");
 
-// Listor
-List<Rectangle> walls = new List<Rectangle>();
-List<DoorItem> doorItems = new List<DoorItem>();
+// Listor, eftersom det läggs till och tas bort nya i nya rum
+List<Rectangle> walls = new();
+List<Door> doors = new();
+List<Item> items = new();
+
+
+/*Inventory system idea:
+lista, nån loop m i i listan, om klicka på nån tangent = i + eller - 1. Byt mellan olika föremål?*/
+List<Item> inventory = new();
+
 
 while (!Raylib.WindowShouldClose())
 {
@@ -83,7 +91,7 @@ while (!Raylib.WindowShouldClose())
         if (scene == "entrance")
         {
             walls.Clear();
-            doorItems.Clear();
+            doors.Clear();
             // Create the walls
             walls.Add(new(200, 200, 700, 50));
             walls.Add(new(200, 200, 50, 500));
@@ -91,8 +99,18 @@ while (!Raylib.WindowShouldClose())
             walls.Add(new(200, 700, 300, 50));
             walls.Add(new(650, 700, 300, 50));
             // Trapdoor
-            doorItems.Add(new() {rect = new(556, 386, 128, 128), image = Raylib.LoadTexture("img/trapdoor.png")});
-            doorItems.Add(new() {rect = new()});
+            doors.Add(new() {rect = new(556, 386, 128, 128), image = Raylib.LoadTexture("img/trapdoor.png")});
+            // Items in room
+            items.Add(new() {name = "trapdoorKey", rect = new(518, 50, 64, 64), image = Raylib.LoadTexture("img/key.png")});
+
+            // for (int i = 0; i < doors.; i++)
+            // {
+                
+            // }
+            // if (items[0].isPickedUp == true)
+            // {
+            //     doors[0].isKeyPickedUp = true;
+            // }
         }
 
         // Player can move around freely on the screen, not outside of the screen or through walls
@@ -119,26 +137,8 @@ DRAWING -game-
     else if (scene != "start" || scene != "end")
     {
         // ------------------------------------------------------------------------
-        // Drawing -entrance- 
-        if (scene == "entrance")
-        {
-            Raylib.ClearBackground(Color.Brown);
-            // Draw All Walls
-            foreach(Rectangle wall in walls)
-            {
-                Raylib.DrawRectangleRec(wall, Color.DarkBrown);
-            }
-            // Draw All Doors and Objects related to them
-            foreach(DoorItem doorItem in doorItems)
-            {
-                Raylib.DrawTexture(doorItem.image, (int)doorItem.rect.X, (int)doorItem.rect.Y, Color.White);
-            }
-
-            DoorItem.IsDoorLocked();
-        }
-        
-        /*Inventory system idea:
-        lista, nån loop m i i listan, om klicka på nån tangent i + eller - 1. Byt mellan olika föremål?*/
+        // Drawing -entrance- (borde väl funka utan loop eftersom listorna ändras med rummen)
+        Room.DrawBasicScene(playerCharacter, walls, doors, items, Color.Brown, Color.DarkBrown);
 
         // Things that should be drawn top of the rest 
         Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
@@ -146,7 +146,5 @@ DRAWING -game-
         Raylib.DrawText($"HP: {playerCharacter.hp}", 10, 10, 40, Color.Red);
     }
 
-
     Raylib.EndDrawing();
-
 }
