@@ -49,6 +49,16 @@ orginalvariabel = Metod(); i main. Gå inte direkt till parametrar eller ref! f�
 Lägga i klasser, skriv public före --> public static void Metod()
 Glöm ej Klassnamn.Metod() vid anropning*/
 
+
+
+
+/*VIKTIGT ATT HA MED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Runtime-fel hindras av t.ex. try eller tryparse (gör i konsollspel istället)
+Användaren informeras om vad hen gjort fel minst 1 gång (locked/need key to unlock 
+visas om man försöker öppna dörren utan nyckeln)
+Motiverar valet av array eller lista i kommentar (har gjort)
+Använder olika typer av loopar (while nuddar trapdoor, if satser i kring locked/unlocked)*/
+
 string scene = "start";
 
 // Array eftersom antalet karaktärer aldrig ändras, bara viktigt 1 gång i början
@@ -61,7 +71,7 @@ Character[] CharacterOptions = {
 Character playerCharacter = new();
 Texture2D shadow = Raylib.LoadTexture("img/skugga.png");
 
-// Listor, eftersom det läggs till och tas bort nya i nya rum
+// Listor, eftersom det läggs till och tas bort saker i nya rum
 List<Rectangle> walls = new();
 List<Door> doors = new();
 List<Item> items = new();
@@ -101,15 +111,11 @@ while (!Raylib.WindowShouldClose())
             // Trapdoor
             doors.Add(new() {rect = new(556, 386, 128, 128), image = Raylib.LoadTexture("img/trapdoor.png")});
             // Items in room
-            items.Add(new() {name = "trapdoorKey", rect = new(518, 50, 64, 64), image = Raylib.LoadTexture("img/key.png")});
-
-            // for (int i = 0; i < doors.; i++)
+            items.Add(new() {name = "trapdoorKey", rect = new(518, 50, 64, 64), image = Raylib.LoadTexture("img/key.png"), isPickedUp = false;});
+            
+            // foreach (Item item in items)
             // {
-                
-            // }
-            // if (items[0].isPickedUp == true)
-            // {
-            //     doors[0].isKeyPickedUp = true;
+            //     if (item.IsPickedUp(playerCharacter) == true) door.isKeyPickedUp = true;
             // }
         }
 

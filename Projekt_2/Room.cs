@@ -16,6 +16,14 @@ class Room{
     }
 
     // Draw All Items
-    foreach (Item item in items) Raylib.DrawTexture(item.image, (int)item.rect.X, (int)item.rect.Y, Color.White);
+    foreach (Item item in items) 
+    {
+        // Nåt är fel ---------------------------------------------
+        // --------------------------------------------------------
+        if (item.IsPickedUp(playerCharacter) == false)
+        {
+            Raylib.DrawTexture(item.image, (int)item.rect.X, (int)item.rect.Y, Color.White);
+        }
+    }
 }
 }

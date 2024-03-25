@@ -5,15 +5,17 @@ class Item{
     public string name = "";
     public Rectangle rect;
     public Texture2D image;
-    public bool isPickedUp = false;
+    public bool isPickedUp;
 
     public bool IsPickedUp(Character character)
     {
-        if (Raylib.CheckCollisionRecs(character.rect, rect) && Raylib.IsKeyPressed(KeyboardKey.Space))
+        // Nåt är fel ----------------------------------------------
+        // ---------------------------------------------------------
+        if (Raylib.CheckCollisionRecs(character.rect, rect) && Raylib.IsKeyPressed(KeyboardKey.E))
         {
-            return true;
+            return isPickedUp = true;
         }
         
-        else return false;
+        else return isPickedUp = false;
     }
 }

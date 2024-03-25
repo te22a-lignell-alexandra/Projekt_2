@@ -74,7 +74,7 @@ public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, 
     
     // Göra om med en foreach loop?? ha en lista eller nåt då för bilderna antar jag?
 
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[0].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[0].rect) && Raylib.IsKeyPressed(KeyboardKey.E))
         {
             character.image = Raylib.LoadTexture("img/PCwitch.png");
             character.rect = new(500, 400, 64, 64);
