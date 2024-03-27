@@ -111,18 +111,18 @@ while (!Raylib.WindowShouldClose())
             // Trapdoor
             doors.Add(new() {rect = new(556, 386, 128, 128), image = Raylib.LoadTexture("img/trapdoor.png")});
             // Items in room
-            items.Add(new() {name = "trapdoorKey", rect = new(518, 50, 64, 64), image = Raylib.LoadTexture("img/key.png"), isPickedUp = false;});
+            items.Add(new() {name = "trapdoorKey", rect = new(518, 50, 64, 64), image = Raylib.LoadTexture("img/key.png"), isPickedUp = false});
             
-            // foreach (Item item in items)
-            // {
-            //     if (item.IsPickedUp(playerCharacter) == true) door.isKeyPickedUp = true;
-            // }
+            for (int i = 0; i < doors.Count; i++)
+            {
+                Door.IsDoorUnlocked(doors[i], items[i], playerCharacter);
+                Door.GoToNewRoom(doors[i], playerCharacter, "basement", scene);
+            }
         }
 
-        // Player can move around freely on the screen, not outside of the screen or through walls
-        playerCharacter.CharacterMovement(walls);
+    // Player can move around freely on the screen, not outside of the screen or through walls
+    playerCharacter.CharacterMovement(walls);
 
-    }
 
     /*----------------------------------------------------------------------------------------------------
     == DRAWING ==
@@ -146,6 +146,14 @@ DRAWING -game-
         // Drawing -entrance- (borde väl funka utan loop eftersom listorna ändras med rummen)
         Room.DrawBasicScene(playerCharacter, walls, doors, items, Color.Brown, Color.DarkBrown);
 
+        if (scene == "entrance")
+        {
+            for (int i = 0; i < doors.Count; i++)
+            {
+                Door.DrawIsDoorUnlocked(doors[i], playerCharacter);
+            }
+        }
+
         // Things that should be drawn top of the rest 
         Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
         Raylib.DrawTexture(shadow, (int)playerCharacter.rect.X - 1100, (int)playerCharacter.rect.Y - 900, Color.White);
@@ -153,4 +161,5 @@ DRAWING -game-
     }
 
     Raylib.EndDrawing();
+}
 }

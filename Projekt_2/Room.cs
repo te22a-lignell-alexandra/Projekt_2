@@ -12,17 +12,19 @@ class Room{
     {
         Raylib.DrawTexture(door.image, (int)door.rect.X, (int)door.rect.Y, Color.White);
         // Write open or locked by the door
-        door.IsDoorLocked(playerCharacter);
+        
     }
 
     // Draw All Items
     foreach (Item item in items) 
     {
-        // Nåt är fel ---------------------------------------------
+
+        // Nåt är fel FUNKAR FORTFARANDE INTE ---------------------------------------------
         // --------------------------------------------------------
-        if (item.IsPickedUp(playerCharacter) == false)
+        if (!item.isPickedUp)
         {
             Raylib.DrawTexture(item.image, (int)item.rect.X, (int)item.rect.Y, Color.White);
+            item.IsPickedUp(playerCharacter);
         }
     }
 }
