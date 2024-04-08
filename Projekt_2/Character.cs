@@ -79,12 +79,12 @@ public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, 
             character.image = Raylib.LoadTexture("img/PCwitch.png");
             character.rect = new(500, 400, 64, 64);
         }
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[1].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[1].rect) && Raylib.IsKeyPressed(KeyboardKey.E))
         {
             character.image = Raylib.LoadTexture("img/PCwizard.png");
             character.rect = new(500, 400, 64, 64);
         }
-    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[2].rect) && Raylib.IsMouseButtonPressed(MouseButton.Left))
+    if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), option[2].rect) && Raylib.IsKeyPressed(KeyboardKey.E))
         {
             character.image = Raylib.LoadTexture("img/PCpotionsWitch.png");
             character.rect = new(500, 400, 64, 64);
