@@ -91,7 +91,7 @@ public static (Texture2D, Rectangle) ChoosePlayerCharacter(Character character, 
         }
     
     return (character.image, character.rect);
-    // Kan man göra om det med bara en if sats??
+    // Kan man göra om det med bara en if sats, eller foreach loop eller nåt??
 }
 
 public static string DrawCharacterStart(string scene, Character[] CharacterChoice, Character playerCharacter)

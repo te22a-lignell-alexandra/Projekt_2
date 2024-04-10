@@ -47,10 +47,8 @@ Character[] CharacterOptions = {
 Character playerCharacter = new();
 Texture2D shadow = Raylib.LoadTexture("img/skugga.png");
 
-// Listor, eftersom det läggs till och tas bort saker i nya rum
+// Listor, eftersom (planen var att) det läggs till och tas bort saker i nya rum
 List<Rectangle> walls = new();
-// List<Door> doors = new();
-// List<Item> items = new();
 
 
 // /*Inventory system idea:
@@ -77,7 +75,6 @@ while (!Raylib.WindowShouldClose())
         if (scene == "entrance")
         {
             walls.Clear();
-            // doors.Clear();
             // Create the walls
             walls.Add(new(200, 200, 700, 50));
             walls.Add(new(200, 200, 50, 500));
@@ -120,15 +117,16 @@ DRAWING -game-
     {
         // ------------------------------------------------------------------------
         // Drawing -entrance- (borde väl funka utan loop eftersom listorna ändras med rummen)
-        Room.DrawBasicScene(playerCharacter, walls, Color.Brown, Color.DarkBrown);
+        Raylib.ClearBackground(Color.Brown);
+        foreach (Rectangle wall in walls) Raylib.DrawRectangleRec(wall, Color.DarkBrown);
 
-        if (scene == "entrance")
-        {
-            // for (int i = 0; i < doors.Count; i++)
-            // {
-            //     Door.DrawIsDoorUnlocked(doors[i], playerCharacter);
-            // }
-        }
+        // if (scene == "entrance")
+        // {
+        //     for (int i = 0; i < doors.Count; i++)
+        //     {
+        //         Door.DrawIsDoorUnlocked(doors[i], playerCharacter);
+        //     }
+        // }
 
         // Things that should be drawn top of the rest 
         Raylib.DrawTexture(playerCharacter.image, (int)playerCharacter.rect.X, (int)playerCharacter.rect.Y, Color.White);
